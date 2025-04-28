@@ -1,0 +1,343 @@
+/* Complete Refined Game Tree Visualization Styles */
+
+.tree-container {
+    margin-top: 30px;
+    padding: 22px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+  }
+  
+  .tree-container h3 {
+    color: #2c3e50;
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 1.3rem;
+    text-align: center;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 12px;
+    font-weight: 600;
+  }
+  
+  .tree-legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+    justify-content: center;
+    padding: 12px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
+  
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    background-color: #fff;
+    border-radius: 30px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s, box-shadow 0.2s;
+  }
+  
+  .legend-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .legend-color {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 4px;
+    transition: transform 0.2s;
+  }
+  
+  .legend-item:hover .legend-color {
+    transform: scale(1.2);
+  }
+  
+  .canvas-container {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    margin: 15px 0;
+    background-color: #fafafa;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.03);
+    height: 500px;
+  }
+  
+  .tree-canvas {
+    display: block;
+    max-width: 100%;
+    margin: 0 auto;
+    transition: all 0.3s ease;
+  }
+  
+  .tree-info {
+    margin-top: 22px;
+    font-size: 0.95rem;
+    color: #444;
+    background-color: #f8f9fa;
+    padding: 18px;
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+  }
+  
+  .tree-info p {
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  
+  .tree-info ul {
+    margin-top: 10px;
+    padding-left: 25px;
+    margin-bottom: 15px;
+  }
+  
+  .tree-info li {
+    margin-bottom: 7px;
+    list-style-type: none;
+    position: relative;
+    padding-left: 5px;
+    line-height: 1.5;
+  }
+  
+  .tree-info li:before {
+    content: "•";
+    color: #3498db;
+    font-weight: bold;
+    position: absolute;
+    left: -15px;
+    font-size: 1.2rem;
+  }
+  
+  .tree-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 18px 0;
+    flex-wrap: wrap;
+  }
+  
+  .control-button, 
+  .tree-controls button {
+    padding: 9px 16px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    box-shadow: 0 2px 5px rgba(52, 152, 219, 0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+  
+  .control-button span,
+  .tree-controls button span {
+    font-weight: bold;
+  }
+  
+  .control-button:hover,
+  .tree-controls button:hover {
+    background-color: #2980b9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(41, 128, 185, 0.4);
+  }
+  
+  .control-button:active,
+  .tree-controls button:active {
+    transform: translateY(0);
+    box-shadow: 0 1px 3px rgba(41, 128, 185, 0.4);
+  }
+  
+  .control-button:disabled,
+  .tree-controls button:disabled {
+    background-color: #a0cdf3;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+  }
+  
+  .depth-selector {
+    padding: 9px 15px;
+    border: 1px solid #e0e0e0;
+    border-radius: 6px;
+    background-color: white;
+    font-size: 0.95rem;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%233498db%22%20d%3D%22M287%2069.4a17.6%2017.6%200%200%200-13-5.4H18.4c-5%200-9.3%201.8-12.9%205.4A17.6%2017.6%200%200%200%200%2082.2c0%205%201.8%209.3%205.4%2012.9l128%20127.9c3.6%203.6%207.8%205.4%2012.8%205.4s9.2-1.8%2012.8-5.4L287%2095c3.5-3.5%205.4-7.8%205.4-12.8%200-5-1.9-9.2-5.5-12.8z%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    background-size: 12px;
+    padding-right: 30px;
+    transition: all 0.2s;
+  }
+  
+  .depth-selector:hover {
+    border-color: #3498db;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+  }
+  
+  .depth-selector:focus {
+    outline: none;
+    border-color: #3498db;
+    box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.25);
+  }
+  
+  /* Node details tooltip */
+  .node-tooltip {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.97);
+    border-radius: 8px;
+    padding: 12px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+    font-size: 0.9rem;
+    max-width: 200px;
+    z-index: 10;
+    transform-origin: top left;
+    animation: tooltipIn 0.2s ease-out;
+    border: 1px solid #e0e0e0;
+  }
+  
+  /* Animations */
+  @keyframes nodeHoverPulse {
+    0% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(52, 152, 219, 0.7);
+    }
+    50% { 
+      transform: scale(1.05);
+      box-shadow: 0 0 0 10px rgba(52, 152, 219, 0);
+    }
+    100% { 
+      transform: scale(1);
+      box-shadow: 0 0 0 0 rgba(52, 152, 219, 0);
+    }
+  }
+  
+  .node-hover {
+    animation: nodeHoverPulse 1.5s infinite;
+  }
+  
+  @keyframes tooltipIn {
+    from { 
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to { 
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  
+  /* Tree transition effects */
+  .tree-fade-in {
+    animation: fadeIn 0.5s ease-in;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  
+  /* Focus highlight effect */
+  .focus-highlight {
+    filter: drop-shadow(0 0 8px rgba(52, 152, 219, 0.8));
+  }
+  
+  /* Pulse animation for selection */
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(66, 133, 244, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(66, 133, 244, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(66, 133, 244, 0); }
+  }
+  
+  .pulse {
+    animation: pulse 1.5s infinite;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .tree-legend {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+    }
+    
+    .tree-container {
+      padding: 15px;
+    }
+    
+    .tree-controls {
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .control-button,
+    .depth-selector,
+    .tree-controls button {
+      width: 100%;
+    }
+    
+    .canvas-container {
+      height: 400px;
+    }
+  }
+  
+  /* Additional effects for node interaction */
+  .node-action-button {
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: absolute;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    transition: all 0.2s;
+    z-index: 5;
+  }
+  
+  .node-action-button:hover {
+    transform: scale(1.1);
+    background-color: #2980b9;
+  }
+  
+  /* Custom scrollbar for better UX */
+  .tree-container::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+  
+  .tree-container::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+  }
+  
+  .tree-container::-webkit-scrollbar-thumb {
+    background: #bbb;
+    border-radius: 10px;
+  }
+  
+  .tree-container::-webkit-scrollbar-thumb:hover {
+    background: #3498db;
+  }
