@@ -1,7 +1,7 @@
 // TicTacMaster API Service
 // This service handles the communication between the React frontend and the Python backend
 
-const API_BASE_URL = 'http://localhost:5000/api';
+const API_BASE_URL = 'http://localhost:5001/api';
 
 /**
  * API Service for TicTacMaster
@@ -18,6 +18,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
       });
       
       if (!response.ok) {
@@ -44,6 +45,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ row, col }),
       });
       
@@ -71,6 +73,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ use_alpha_beta: useAlphaBeta, player }),
       });
       
@@ -98,6 +101,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ use_alpha_beta: useAlphaBeta, player }),
       });
       
@@ -118,7 +122,9 @@ class ApiService {
    */
   static async getGameState() {
     try {
-      const response = await fetch(`${API_BASE_URL}/game_state`);
+      const response = await fetch(`${API_BASE_URL}/game_state`, {
+        credentials: 'include',
+      });
       
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
@@ -144,6 +150,7 @@ class ApiService {
         headers: {
           'Content-Type': 'application/json',
         },
+        credentials: 'include',
         body: JSON.stringify({ 
           use_alpha_beta: useAlphaBeta,
           player: player 

@@ -5,13 +5,34 @@ This module serves as an API bridge between the React frontend and the Python ba
 It uses Flask to create a simple REST API.
 """
 
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, make_response
 from flask_cors import CORS
+from flask_restful import Resource, Api
 import time
 from game import TicTacToe, TicTacToeAI
 
 app = Flask(__name__)
-CORS(app)  # Enable CORS for all routes
+# Remove CORS initialization
+# CORS(app)
+
+# Add CORS headers to all responses
+@app.after_request
+def add_cors_headers(response):
+    response.headers.add('Access-Control-Allow-Origin', 'http://localhost:3000')
+    response.headers.add('Access-Control-Allow-Headers', 'Content-Type,Authorization')
+    response.headers.add('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE,OPTIONS')
+    response.headers.add('Access-Control-Allow-Credentials', 'true')
+    return response
+
+# Add OPTIONS handler for preflight requests
+@app.route('/api/reset', methods=['OPTIONS'])
+@app.route('/api/make_move', methods=['OPTIONS'])
+@app.route('/api/get_ai_move', methods=['OPTIONS'])
+@app.route('/api/ai_make_move', methods=['OPTIONS'])
+@app.route('/api/game_state', methods=['OPTIONS'])
+@app.route('/api/decision_tree', methods=['OPTIONS'])
+def handle_options():
+    return '', 200
 
 # Game instance for the server
 game = TicTacToe()
@@ -211,4 +232,4 @@ def get_decision_tree():
     })
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5000)
+    app.run(debug=True, port=5001)
